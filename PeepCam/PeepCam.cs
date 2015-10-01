@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Parkitect.UI;
 using UnityEngine;
 
 namespace PeepCam
@@ -116,6 +117,10 @@ namespace PeepCam
 
             _headCam.transform.position = position;
 
+            UIWorldOverlayController.Instance.gameObject.SetActive(false);
+
+            Camera.main.GetComponent<CameraController>().enabled = false;
+
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
@@ -130,6 +135,10 @@ namespace PeepCam
             RestoreGraphicSettings();
 
             Destroy(_headCam);
+
+            Camera.main.GetComponent<CameraController>().enabled = true;
+
+            UIWorldOverlayController.Instance.gameObject.SetActive(true);
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
