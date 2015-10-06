@@ -1,1 +1,7 @@
-{"BaseDir":"PeepCam","CompilerVersion":"v4.0","CodeFiles":[],"BuildPath":"bin/build-151001134058.dll","EntryPoint":"PeepCam.Main","IsDevelopment":true,"IsEnabled":true,"Name":"Peep Cam","Project":"PeepCam.csproj","Tag":null,"ReferencedAssemblies":[],"Repository":null}
+{
+	"BaseDir": "PeepCam",
+	"EntryPoint": "PeepCam.Main",
+	"IsDevelopment": true,
+	"Name": "Peep Cam",
+	"Project": "PeepCam.csproj",
+}
