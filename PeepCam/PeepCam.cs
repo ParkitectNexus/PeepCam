@@ -41,7 +41,7 @@ namespace PeepCam
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
-                    EnterHeadCam(hit.transform.position + Vector3.up);
+                    EnterHeadCam(hit.point + Vector3.up);
                 }
             }
             else if (Input.GetKeyUp(KeyCode.Tab))
