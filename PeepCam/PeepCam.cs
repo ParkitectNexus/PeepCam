@@ -15,11 +15,6 @@ namespace PeepCam
 
         public static PeepCam Instance;
 
-        private float _origShadowDist;
-        private int _origQualityLevel;
-        private int _origResoWidth;
-        private int _origResoHeight;
-
         private Camera _cam;
 
         float fps = 0.0f;
@@ -68,40 +63,10 @@ namespace PeepCam
             }
         }
         
-        private void LowerGraphicSettings()
-        {
-            Application.targetFrameRate = -1;
-
-            _origShadowDist = QualitySettings.shadowDistance;
-            _origQualityLevel = QualitySettings.GetQualityLevel();
-            _origResoWidth = Screen.width;
-            _origResoHeight = Screen.height;
-
-            QualitySettings.SetQualityLevel(0);
-            QualitySettings.shadowDistance = 0f;
-            QualitySettings.antiAliasing = 2;
-
-            if (Screen.fullScreen)
-                Screen.SetResolution((int)(_origResoWidth / 1.2f), (int)(_origResoHeight / 1.2f), Screen.fullScreen);
-        }
-
-        private void RestoreGraphicSettings()
-        {
-            Application.targetFrameRate = 60;
-
-            QualitySettings.shadowDistance = _origShadowDist;
-            QualitySettings.SetQualityLevel(_origQualityLevel);
-
-            if (Screen.fullScreen)
-                Screen.SetResolution(_origResoWidth, _origResoHeight, Screen.fullScreen);
-        }
-
         public void EnterHeadCam(Vector3 position)
         {
             if (_isWalking)
                 return;
-
-            LowerGraphicSettings();
 
             _headCam = new GameObject();
 
@@ -131,8 +96,6 @@ namespace PeepCam
         {
             if (!_isWalking)
                 return;
-
-            RestoreGraphicSettings();
 
             Destroy(_headCam);
 
