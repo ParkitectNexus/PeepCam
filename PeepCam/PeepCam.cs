@@ -30,6 +30,8 @@ namespace PeepCam
         {
             if (Input.GetKeyUp(KeyCode.Tab) && !_isWalking)
             {
+                GameController.Instance.enableVisibleMouseColliders();
+
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
@@ -38,6 +40,8 @@ namespace PeepCam
                 {
                     EnterHeadCam(hit.point + Vector3.up);
                 }
+
+                GameController.Instance.disableMouseColliders();
             }
             else if (Input.GetKeyUp(KeyCode.Tab))
             {
