@@ -73,6 +73,7 @@ namespace PeepCam
                 return;
 
             _headCam = new GameObject();
+            _headCam.layer = LayerMask.NameToLayer("CoasterCars");
 
             _cam = _headCam.AddComponent<Camera>();
             _headCam.AddComponent<AudioListener>();
