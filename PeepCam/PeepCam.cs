@@ -24,9 +24,11 @@ namespace PeepCam
             Instance = this;
 
             DontDestroyOnLoad(gameObject);
-        }
 
-        void Update()
+			CullingGroupManager.Instance.setTargetCamera(_cam);
+		}
+		
+		void Update()
         {
             if (Input.GetKeyUp(KeyCode.Tab) && !_isWalking)
             {
@@ -68,7 +70,8 @@ namespace PeepCam
             _headCam.layer = LayerMask.NameToLayer("CoasterCars");
 
             _cam = _headCam.AddComponent<Camera>();
-            _headCam.AddComponent<AudioListener>();
+			CullingGroupManager.Instance.setTargetCamera(_cam);
+			_headCam.AddComponent<AudioListener>();
             _headCam.AddComponent<FpsMouse>();
             _headCam.AddComponent<PlayerController>();
             CharacterController cc = _headCam.AddComponent<CharacterController>();
@@ -97,8 +100,9 @@ namespace PeepCam
             Destroy(_headCam);
 
             Camera.main.GetComponent<CameraController>().enabled = true;
+			CullingGroupManager.Instance.setTargetCamera(Camera.main.GetComponent<Camera>());
 
-            UIWorldOverlayController.Instance.gameObject.SetActive(true);
+			UIWorldOverlayController.Instance.gameObject.SetActive(true);
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
