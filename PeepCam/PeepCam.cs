@@ -30,18 +30,10 @@ namespace PeepCam
         {
             if (Input.GetKeyUp(KeyCode.Tab) && !_isWalking)
             {
-                GameController.Instance.enableVisibleMouseColliders();
-
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                if (Utility.getObjectBelowMouse().hitSomething)
                 {
-                    EnterHeadCam(hit.point + Vector3.up);
+                    EnterHeadCam(Utility.getObjectBelowMouse().hitPosition + Vector3.up);
                 }
-
-                GameController.Instance.disableMouseColliders();
             }
             else if (Input.GetKeyUp(KeyCode.Tab))
             {
@@ -82,8 +74,8 @@ namespace PeepCam
             CharacterController cc = _headCam.AddComponent<CharacterController>();
 
             cc.radius = 0.1f;
-            cc.height = 0.5f;
-            cc.center = new Vector3(0, -0.5f, 0);
+            cc.height = 0.3f;
+            cc.center = new Vector3(0, -0.3f, 0);
 
             _headCam.transform.position = position;
 
